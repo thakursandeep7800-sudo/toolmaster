@@ -306,6 +306,18 @@
     Characters: 0
   </div>
 </div>
+    <!-- PASSWORD GENERATOR -->
+<div class="card">
+  <h3>🔐 Password Generator</h3>
+
+  <input type="number" id="passwordLength" value="12" min="4" max="50">
+
+  <button onclick="generatePassword()">Generate Password</button>
+
+  <div class="result" id="passwordResult">
+    Your password will appear here
+  </div>
+</div>
 <footer>
     <p>© 2026 ToolMaster. All Rights Reserved.</p>
 </footer>
@@ -445,6 +457,20 @@ function countText() {
   document.getElementById("textResult").innerHTML =
     "Words: " + words + "<br>" +
     "Characters: " + characters;
+}
+    function generatePassword() {
+  let length = Number(document.getElementById("passwordLength").value);
+  let characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+  let password = "";
+
+  for (let i = 0; i < length; i++) {
+    password += characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
+  }
+
+  document.getElementById("passwordResult").innerHTML = password;
 }
 </script>
 
