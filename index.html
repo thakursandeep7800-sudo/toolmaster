@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ToolMaster - Free Online Tools</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 8px;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: white;
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .tools {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: #2563eb;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 12px;
+            background: #eef4ff;
+            border-radius: 6px;
+            min-height: 40px;
+        }
+
+        footer {
+            margin-top: 40px;
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🛠️ ToolMaster</h1>
+    <p>Free Online Tools</p>
+
+    <nav>
+        <a href="#tools">Tools</a>
+        <a href="#about">About</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>Free Online Tools</h2>
+    <p>Simple and useful tools for everyday work.</p>
+</section>
+
+
+<section class="tools" id="tools">
+
+    <!-- GST CALCULATOR -->
+
+    <div class="card">
+        <h3>🧾 GST Calculator</h3>
+
+        <input
+            type="number"
+            id="gstAmount"
+            placeholder="Enter amount"
+        >
+
+        <input
+            type="number"
+            id="gstRate"
+            placeholder="GST rate (%)"
+        >
+
+        <button onclick="calculateGST()">
+            Calculate GST
+        </button>
+
+        <div class="result" id="gstResult">
+            Result will appear here
+        </div>
+    </div>
+
+
+    <!-- AGE CALCULATOR -->
+
+    <div class="card">
+        <h3>🎂 Age Calculator</h3>
+
+        <input
+            type="date"
+            id="birthDate"
+        >
+
+        <button onclick="calculateAge()">
+            Calculate Age
+        </button>
+
+        <div class="result" id="ageResult">
+            Result will appear here
+        </div>
+    </div>
+
+
+    <!-- EMI CALCULATOR -->
+
+    <div class="card">
+        <h3>💰 EMI Calculator</h3>
+
+        <input
+            type="number"
+            id="loan"
+            placeholder="Loan amount"
+        >
+
+        <input
+            type="number"
+            id="interest"
+            placeholder="Interest rate (%)"
+        >
+
+        <input
+            type="number"
+            id="months"
+            placeholder="Loan period (months)"
+        >
+
+        <button onclick="calculateEMI()">
+            Calculate EMI
+        </button>
+
+        <div class="result" id="emiResult">
+            Result will appear here
+        </div>
+    </div>
+
+
+    <!-- QR CODE -->
+
+    <div class="card">
+        <h3>🔲 QR Code Generator</h3>
+
+        <input
+            type="text"
+            id="qrText"
+            placeholder="Enter text or URL"
+        >
+
+        <button onclick="generateQR()">
+            Generate QR Code
+        </button>
+
+        <div
+            class="result"
+            id="qrResult"
+            style="text-align:center;"
+        >
+        </div>
+    </div>
+
+</section>
+
+
+<section
+    id="about"
+    style="text-align:center; padding:40px 20px; background:white;"
+>
+    <h2>About ToolMaster</h2>
+
+    <p style="margin-top:10px; color:#666;">
+        ToolMaster provides simple and free online tools.
+    </p>
+</section>
+
+
+<footer>
+    <p>© 2026 ToolMaster. All Rights Reserved.</p>
+</footer>
+
+
+<script>
+
+    // GST CALCULATOR
+
+    function calculateGST() {
+
+        let amount =
+            Number(document.getElementById("gstAmount").value);
+
+        let rate =
+            Number(document.getElementById("gstRate").value);
+
+        if (!amount || !rate) {
+            document.getElementById("gstResult").innerHTML =
+                "Please enter amount and GST rate.";
+            return;
+        }
+
+        let gst = amount * rate / 100;
+        let total = amount + gst;
+
+        document.getElementById("gstResult").innerHTML =
+            "GST: ₹" + gst.toFixed(2) +
+            "<br>Total: ₹" + total.toFixed(2);
+    }
+
+
+    // AGE CALCULATOR
+
+    function calculateAge() {
+
+        let birth =
+            new Date(document.getElementById("birthDate").value);
+
+        if (!document.getElementById("birthDate").value) {
+            document.getElementById("ageResult").innerHTML =
+                "Please select your birth date.";
+            return;
+        }
+
+        let today = new Date();
+
+        let age = today.getFullYear() - birth.getFullYear();
+
+        let month = today.getMonth() - birth.getMonth();
+
+        if (
+            month < 0 ||
+            (month === 0 && today.getDate() < birth.getDate())
+        ) {
+            age--;
+        }
+
+        document.getElementById("ageResult").innerHTML =
+            "Your age is " + age + " years.";
+    }
+
+
+    // EMI CALCULATOR
+
+    function calculateEMI() {
+
+        let loan =
+            Number(document.getElementById("loan").value);
+
+        let interest =
+            Number(document.getElementById("interest").value);
+
+        let months =
+            Number(document.getElementById("months").value);
+
+        if (!loan || !interest || !months) {
+            document.getElementById("emiResult").innerHTML =
+                "Please enter all values.";
+            return;
+        }
+
+        let monthlyRate =
+            interest / 12 / 100;
+
+        let emi =
+            loan *
+            monthlyRate *
+            Math.pow(1 + monthlyRate, months) /
+            (Math.pow(1 + monthlyRate, months) - 1);
+
+        document.getElementById("emiResult").innerHTML =
+            "Monthly EMI: ₹" + emi.toFixed(2);
+    }
+
+
+    // QR CODE
+
+    function generateQR() {
+
+        let text =
+            document.getElementById("qrText").value;
+
+        if (!text) {
+            document.getElementById("qrResult").innerHTML =
+                "Please enter text or a URL.";
+            return;
+        }
+
+        let url =
+            "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="
+            + encodeURIComponent(text);
+
+        document.getElementById("qrResult").innerHTML =
+            '<img src="' + url + '" width="200" alt="QR Code">';
+    }
+
+</script>
+
+</body>
+</html>
