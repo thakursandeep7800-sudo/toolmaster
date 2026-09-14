@@ -246,6 +246,23 @@
 
 
 <section
+    <!-- PERCENTAGE CALCULATOR -->
+
+<div class="card">
+    <h3>📊 Percentage Calculator</h3>
+
+    <input type="number" id="percentNumber" placeholder="Enter number">
+
+    <input type="number" id="percentTotal" placeholder="Enter total">
+
+    <button onclick="calculatePercentage()">
+        Calculate Percentage
+    </button>
+
+    <div class="result" id="percentageResult">
+        Result will appear here
+    </div>
+</div>
     id="about"
     style="text-align:center; padding:40px 20px; background:white;"
 >
@@ -373,6 +390,21 @@
         document.getElementById("qrResult").innerHTML =
             '<img src="' + url + '" width="200" alt="QR Code">';
     }
+    function calculatePercentage() {
+  let number = Number(document.getElementById("percentNumber").value);
+  let total = Number(document.getElementById("percentTotal").value);
+
+  if (!number || !total) {
+    document.getElementById("percentageResult").innerHTML =
+      "Please enter both values.";
+    return;
+  }
+
+  let percentage = (number / total) * 100;
+
+  document.getElementById("percentageResult").innerHTML =
+    percentage.toFixed(2) + "%";
+}
 
 </script>
 
