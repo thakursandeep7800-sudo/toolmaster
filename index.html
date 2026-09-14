@@ -273,7 +273,27 @@
     </p>
 </section>
 
+<!-- UNIT CONVERTER -->
+<div class="card">
+  <h3>📏 Unit Converter</h3>
 
+  <input type="number" id="unitValue" placeholder="Enter value">
+
+  <select id="unitType">
+    <option value="km-miles">Kilometers → Miles</option>
+    <option value="miles-km">Miles → Kilometers</option>
+    <option value="kg-lb">Kilograms → Pounds</option>
+    <option value="lb-kg">Pounds → Kilograms</option>
+    <option value="c-f">Celsius → Fahrenheit</option>
+    <option value="f-c">Fahrenheit → Celsius</option>
+  </select>
+
+  <button onclick="convertUnit()">Convert</button>
+
+  <div class="result" id="unitResult">
+    Result will appear here
+  </div>
+</div>
 <footer>
     <p>© 2026 ToolMaster. All Rights Reserved.</p>
 </footer>
