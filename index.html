@@ -293,6 +293,18 @@
   <div class="result" id="unitResult">
     Result will appear here
   </div>
+    
+</div>
+    <!-- WORD COUNTER -->
+<div class="card">
+  <h3>📝 Word Counter</h3>
+  <textarea id="textInput" placeholder="Type your text"></textarea>
+  <button onclick="countText()">Count</button>
+
+  <div class="result" id="textResult">
+    Words: 0<br>
+    Characters: 0
+  </div>
 </div>
 <footer>
     <p>© 2026 ToolMaster. All Rights Reserved.</p>
@@ -425,7 +437,15 @@
   document.getElementById("percentageResult").innerHTML =
     percentage.toFixed(2) + "%";
 }
+function countText() {
+  let text = document.getElementById("textInput").value;
+  let words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+  let characters = text.length;
 
+  document.getElementById("textResult").innerHTML =
+    "Words: " + words + "<br>" +
+    "Characters: " + characters;
+}
 </script>
 
 </body>
