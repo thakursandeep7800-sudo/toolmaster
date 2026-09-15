@@ -318,6 +318,18 @@
     Your password will appear here
   </div>
 </div>
+    <!-- STOPWATCH -->
+<div class="card">
+  <h3>⏱️ Stopwatch</h3>
+
+  <div class="result" id="stopwatch">
+    00:00:00
+  </div>
+
+  <button onclick="startStopwatch()">▶️ Start</button>
+  <button onclick="pauseStopwatch()">⏸️ Pause</button>
+  <button onclick="resetStopwatch()">🔄 Reset</button>
+</div>
 <footer>
     <p>© 2026 ToolMaster. All Rights Reserved.</p>
 </footer>
@@ -471,6 +483,35 @@ function countText() {
   }
 
   document.getElementById("passwordResult").innerHTML = password;
+}
+let stopwatchTime = 0;
+let stopwatchInterval;
+
+function startStopwatch() {
+  clearInterval(stopwatchInterval);
+
+  stopwatchInterval = setInterval(function () {
+    stopwatchTime++;
+
+    let hours = Math.floor(stopwatchTime / 3600);
+    let minutes = Math.floor((stopwatchTime % 3600) / 60);
+    let seconds = stopwatchTime % 60;
+
+    document.getElementById("stopwatch").innerHTML =
+      String(hours).padStart(2, "0") + ":" +
+      String(minutes).padStart(2, "0") + ":" +
+      String(seconds).padStart(2, "0");
+  }, 1000);
+}
+
+function pauseStopwatch() {
+  clearInterval(stopwatchInterval);
+}
+
+function resetStopwatch() {
+  clearInterval(stopwatchInterval);
+  stopwatchTime = 0;
+  document.getElementById("stopwatch").innerHTML = "00:00:00";
 }
 </script>
 
