@@ -330,6 +330,19 @@
   <button onclick="pauseStopwatch()">⏸️ Pause</button>
   <button onclick="resetStopwatch()">🔄 Reset</button>
 </div>
+    <!-- SCIENTIFIC CALCULATOR -->
+<div class="card">
+  <h3>🧮 Scientific Calculator</h3>
+
+  <input type="text" id="calcDisplay" placeholder="Enter calculation">
+
+  <button onclick="calculate()">Calculate</button>
+  <button onclick="clearCalculator()">Clear</button>
+
+  <div class="result" id="calcResult">
+    Result will appear here
+  </div>
+</div>
 <footer>
     <p>© 2026 ToolMaster. All Rights Reserved.</p>
 </footer>
@@ -512,6 +525,22 @@ function resetStopwatch() {
   clearInterval(stopwatchInterval);
   stopwatchTime = 0;
   document.getElementById("stopwatch").innerHTML = "00:00:00";
+}
+    function calculate() {
+  let expression = document.getElementById("calcDisplay").value;
+
+  try {
+    let result = Function('"use strict"; return (' + expression + ')')();
+    document.getElementById("calcResult").innerHTML = result;
+  } catch {
+    document.getElementById("calcResult").innerHTML = "Invalid calculation";
+  }
+}
+
+function clearCalculator() {
+  document.getElementById("calcDisplay").value = "";
+  document.getElementById("calcResult").innerHTML = "Result will appear here";
+  }       
 }
 </script>
 
