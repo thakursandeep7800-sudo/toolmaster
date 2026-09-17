@@ -405,10 +405,13 @@ footer{
 100% Free • Easy to Use • No Signup
 </p>
 
-    <nav>
+  <button onclick="toggleDarkMode()" style="width:auto;padding:8px 14px;margin:12px auto;background:rgba(255,255,255,.15);">
+🌙 Dark Mode
+</button>  <nav>
         <a href="#">Home</a>
         <a href="#tools">Tools</a>
         <a href="#about">About</a>
+   
     </nav>
 </header>
 
@@ -857,7 +860,26 @@ function clearCalculator() {
   document.getElementById("calcDisplay").value = "";
   document.getElementById("calcResult").innerHTML = "Result will appear here";
 }     
-</script>
+
+function toggleDarkMode(){
+  document.body.classList.toggle("dark-mode");
+  
+  if(!document.getElementById("darkModeStyle")){
+    const style = document.createElement("style");
+    style.id = "darkModeStyle";
+    style.innerHTML = `
+      .dark-mode{background:#0f172a;color:#e2e8f0}
+      .dark-mode .hero{background:#1e293b;color:#e2e8f0}
+      .dark-mode .card{background:#1e293b;color:#e2e8f0;border-color:#334155}
+      .dark-mode .card p{color:#cbd5e1}
+      .dark-mode section#about{background:#1e293b!important;color:#e2e8f0}
+      .dark-mode section#about h2{color:#e2e8f0}
+      .dark-mode input,.dark-mode select,.dark-mode textarea{background:#334155;color:white;border-color:#475569}
+      .dark-mode .result{background:#1e3a5f;color:#dbeafe}
+    `;
+    document.head.appendChild(style);
+  }
+}</script>
 
 </body>
 </html>
